@@ -6,6 +6,8 @@ Download the addons folder and drag it into the root of your Godot project. From
 
 To add more commands, add a string match to `read_command` in `src_uwindot.gd` and custom command functions in `src_uwindot_commands.gd` (called with `CMD.[function name]`).
 
+By default, the console command is opened with `ui_filedialog_refresh` which is typically bound to F5.
+
 ## License
 Licensed under MIT. Please see the [LICENSE](https://github.com/mocacola02/UWindot/blob/main/LICENSE) file for more info.
 
