@@ -1,0 +1,10 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://od54a1clbf6i"]
+
+[ext_resource type="FontFile" uid="uid://b8gqfhga10tej" path="res://addons/uwindot/resources/AlphaProta-Regular.woff2" id="1_lu7m4"]
+
+[resource]
+font = ExtResource("1_lu7m4")
+font_size = 12
+font_color = Color(0, 1, 0, 1)
+outline_size = 2
+outline_color = Color(0, 1, 0, 1)

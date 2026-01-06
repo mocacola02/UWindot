@@ -1,0 +1,141 @@
+[gd_scene format=3 uid="uid://b1kh0h8myqagr"]
+
+[ext_resource type="Script" uid="uid://oaqs3p4mlfsd" path="res://addons/uwindot/src_uwindot.gd" id="1_1y1bm"]
+[ext_resource type="FontFile" uid="uid://b8gqfhga10tej" path="res://addons/uwindot/resources/AlphaProta-Regular.woff2" id="3_56i0t"]
+[ext_resource type="Script" uid="uid://dyu25nvhud6je" path="res://addons/uwindot/src_uwindot_commands.gd" id="3_n304c"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_56i0t"]
+font = ExtResource("3_56i0t")
+font_size = 32
+font_color = Color(0, 1, 0, 1)
+outline_size = 4
+outline_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4y1ps"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hurg"]
+bg_color = Color(0.23392546, 0.23392546, 0.23392543, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ntbtf"]
+bg_color = Color(0.8474744, 0.84747446, 0.84747446, 1)
+
+[node name="UwindotMaster" type="Control" unique_id=177550541]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_1y1bm")
+metadata/_custom_type_script = "uid://oaqs3p4mlfsd"
+
+[node name="UwindotOverlay" type="Control" parent="." unique_id=1979488281]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 0.208
+offset_bottom = -0.19999695
+grow_horizontal = 2
+mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UwindotOverlay" unique_id=428283866]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 180.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="LineList" type="VBoxContainer" parent="UwindotOverlay/MarginContainer" unique_id=1070410336]
+clip_contents = true
+layout_mode = 2
+
+[node name="FPSLabel" type="Label" parent="." unique_id=919462044]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = -16.0
+offset_right = -19.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 1
+text = "60.0"
+label_settings = SubResource("LabelSettings_56i0t")
+
+[node name="UwindotConsole" type="Window" parent="." unique_id=2120934341]
+oversampling_override = 1.0
+title = "Console"
+position = Vector2i(0, 36)
+size = Vector2i(512, 384)
+visible = false
+min_size = Vector2i(192, 128)
+
+[node name="CmdLineContainer" type="HBoxContainer" parent="UwindotConsole" unique_id=1485259057]
+z_index = 1
+custom_minimum_size = Vector2(0, 32)
+anchors_preset = -1
+anchor_top = 0.91700006
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 31.871979
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="CmdLine" type="LineEdit" parent="UwindotConsole/CmdLineContainer" unique_id=1093584001]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_uneditable_color = Color(0.30980393, 0.30980393, 0.30980393, 1)
+theme_override_colors/font_selected_color = Color(0.12955853, 0.12955844, 0.12955844, 1)
+theme_override_colors/font_placeholder_color = Color(0.650129, 0.6501281, 0.65012825, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_4y1ps")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_4hurg")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ntbtf")
+placeholder_text = "Type command here..."
+
+[node name="LogScroller" type="ScrollContainer" parent="UwindotConsole" unique_id=327265157]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LogMargin" type="MarginContainer" parent="UwindotConsole/LogScroller" unique_id=1740529545]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="LogContainer" type="VBoxContainer" parent="UwindotConsole/LogScroller/LogMargin" unique_id=1321892790]
+layout_mode = 2
+
+[node name="ColorBG" type="ColorRect" parent="UwindotConsole" unique_id=1036459869]
+z_index = -9
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="UWindotCMD" type="Node" parent="." unique_id=1050972142]
+script = ExtResource("3_n304c")
+metadata/_custom_type_script = "uid://dyu25nvhud6je"
+
+[connection signal="close_requested" from="UwindotConsole" to="." method="_on_console_close_requested"]
+[connection signal="text_submitted" from="UwindotConsole/CmdLineContainer/CmdLine" to="." method="read_command"]

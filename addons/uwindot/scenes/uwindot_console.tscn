@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://bq3aeq6ycis6n"]
+
+[ext_resource type="LabelSettings" uid="uid://c8pue3ftanc2m" path="res://addons/uwindot/resources/label_console.tres" id="1_4hurg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4y1ps"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hurg"]
+bg_color = Color(0.23392546, 0.23392546, 0.23392543, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ntbtf"]
+bg_color = Color(0.8474744, 0.84747446, 0.84747446, 1)
+
+[node name="UwindotConsole" type="Window" unique_id=2120934341]
+oversampling_override = 1.0
+title = "Console"
+position = Vector2i(0, 36)
+size = Vector2i(512, 384)
+
+[node name="CmdLineContainer" type="HBoxContainer" parent="." unique_id=1485259057]
+z_index = 1
+custom_minimum_size = Vector2(0, 32)
+anchors_preset = -1
+anchor_top = 0.91700006
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 31.871979
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="LineEdit" type="LineEdit" parent="CmdLineContainer" unique_id=1093584001]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_uneditable_color = Color(0.30980393, 0.30980393, 0.30980393, 1)
+theme_override_colors/font_selected_color = Color(0.12955853, 0.12955844, 0.12955844, 1)
+theme_override_colors/font_placeholder_color = Color(0.650129, 0.6501281, 0.65012825, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_4y1ps")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_4hurg")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ntbtf")
+placeholder_text = "Type command here..."
+
+[node name="ColorBG" type="ColorRect" parent="." unique_id=1036459869]
+z_index = -9
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0, 0, 0, 1)
+
+[node name="LogScroller" type="ScrollContainer" parent="." unique_id=327265157]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LogMargin" type="MarginContainer" parent="LogScroller" unique_id=1740529545]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="LogContainer" type="VBoxContainer" parent="LogScroller/LogMargin" unique_id=1321892790]
+layout_mode = 2
+
+[node name="Line0" type="Label" parent="LogScroller/LogMargin/LogContainer" unique_id=1796770927]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Preview print line"
+label_settings = ExtResource("1_4hurg")
+clip_text = true
