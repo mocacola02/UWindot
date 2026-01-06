@@ -3,6 +3,7 @@ A log overlay, FPS counter, and command console window for Godot 4.5+ inspired b
 
 ## Installation
 Download the addons folder and drag it into the root of your Godot project. From there, add the `uwindot_master.tscn` scene where needed.
+
 To add more commands, add a string match to `read_command` in `src_uwindot.gd` and custom command functions in `src_uwindot_commands.gd` (called with `CMD.[function name]`).
 
 ## License
