@@ -1,3 +1,6 @@
+## UWindot by Moca aka LunaMoca
+## MIT License, see LICENSE file
+
 class_name UWindot extends Control
 
 @onready var log_path: String = ProjectSettings.get("debug/file_logging/log_path")
