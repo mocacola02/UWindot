@@ -22,7 +22,7 @@ var log_entries: Array[String]
 
 var overlay_labels: Array[Label]
 
-var console_entries: Array[Label]
+var console_labels: Array[Label]
 var max_entries: int = 64
 
 #region General
@@ -66,6 +66,7 @@ func update_log() -> bool:
 		log_entries.append(new_line)
 		
 		if log_entries.size() >= max_entries:
+			log_entries[0]
 			log_entries.remove_at(0)
 		return true
 	else:
@@ -94,15 +95,17 @@ func update_overlay() -> void:
 	overlay_labels.append(create_label(overlay_log,overlay_theme))
 	
 	if overlay_labels.size() >= 10:
-		console_entries.remove_at(0)
+		overlay_labels[0].queue_free()
+		overlay_labels.remove_at(0)
 #endregion
 
 #region Console Log
 func update_console() -> void:
-		console_entries.append(create_label(console_log,console_theme,true))
+		console_labels.append(create_label(console_log,console_theme,true))
 		
-		if console_entries.size() >= max_entries:
-			console_entries.remove_at(0)
+		if console_labels.size() >= max_entries:
+			console_labels[0].queue_free()
+			console_labels.remove_at(0)
 		
 		if console.visible:
 			var console_scroller := $UwindotConsole/LogScroller
