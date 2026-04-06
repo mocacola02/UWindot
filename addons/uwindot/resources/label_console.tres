@@ -2,6 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://b8gqfhga10tej" path="res://addons/uwindot/resources/AlphaProta-Regular.woff2" id="1_tdwum"]
 
+
 [resource]
 font = ExtResource("1_tdwum")
 font_size = 10

@@ -21,6 +21,8 @@ bg_color = Color(0.23392546, 0.23392546, 0.23392543, 1)
 bg_color = Color(0.8474744, 0.84747446, 0.84747446, 1)
 
 [node name="UwindotMaster" type="Control" unique_id=177550541]
+process_mode = 3
+z_index = 999
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -138,4 +140,5 @@ script = ExtResource("3_n304c")
 metadata/_custom_type_script = "uid://dyu25nvhud6je"
 
 [connection signal="close_requested" from="UwindotConsole" to="." method="_on_console_close_requested"]
-[connection signal="text_submitted" from="UwindotConsole/CmdLineContainer/CmdLine" to="." method="read_command"]
+[connection signal="focus_exited" from="UwindotConsole" to="." method="hide_cursor"]
+[connection signal="text_submitted" from="UwindotConsole/CmdLineContainer/CmdLine" to="UWindotCMD" method="read_command"]

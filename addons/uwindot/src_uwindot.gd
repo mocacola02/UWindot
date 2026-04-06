@@ -7,14 +7,12 @@ class_name UWindot extends Control
 
 @onready var overlay_log := $UwindotOverlay/MarginContainer/LineList
 @onready var fps_label := $FPSLabel
-@onready var console := $UwindotConsole
+@onready var console: Window = $UwindotConsole
 @onready var console_log := $UwindotConsole/LogScroller/LogMargin/LogContainer
 @onready var console_line := $UwindotConsole/CmdLineContainer/CmdLine
 
 @onready var overlay_theme := preload("res://addons/uwindot/resources/label_main.tres")
 @onready var console_theme := preload("res://addons/uwindot/resources/label_console.tres")
-
-@onready var CMD := $UWindotCMD
 
 var log_access: FileAccess
 var log_valid: bool
@@ -41,13 +39,18 @@ func _process(delta: float) -> void:
 		update_fps()
 
 func _unhandled_key_input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed(&'ui_filedialog_refresh'):
+	if event.is_action_pressed(&"debug_console"):
 		if console.visible:
-			console.visible = false
+			console.hide()
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		else:
-			console.visible = true
+			console.popup_centered()
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+
+func hide_cursor() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
 
 func get_log() -> bool:
 	if !FileAccess.file_exists(log_path):
@@ -120,20 +123,3 @@ func update_fps() -> void:
 	var fps := snappedf(Engine.get_frames_per_second(), 0.1)
 	fps_label.text = str(fps)
 #endregion
-
-func read_command(text: String) -> void:
-	console_line.clear()
-	
-	if text == "":
-		return
-		
-	print(text)
-	
-	var command: PackedStringArray = text.split(" ")
-	
-	print(command)
-	
-	match command[0]:
-		"exit": CMD.quit_game()
-		"quit": CMD.quit_game()
-		_: print("Unknown command.")
